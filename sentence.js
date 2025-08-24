@@ -382,10 +382,10 @@ function ran() {
         correctAnswers.push(word.innerHTML);
     }
     if (a < 16) {
-        num.innerHTML = a + "/30";
+        num.innerHTML = a + "/15";
     }
     else {
-        num.innerHTML = "30/30";
+        num.innerHTML = "15/15";
     }
     a++;
     if (a > 16) {
