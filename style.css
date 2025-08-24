@@ -1,0 +1,36 @@
+#user {
+    height: 50px;
+    width:80%;
+    font-size: 200%;
+}
+.submit {
+    height: 50px;
+    width: 10%;
+}
+.word {
+    padding: 30px;
+    background-color: #00b7ff70;
+    text-align: center;
+    margin: 20px;
+    display: inline-block;
+    width: 40%;
+}
+#word {
+    font-size: 30px;
+}
+#c, #f, .f_li {
+    font-size:30px;
+}
+.false_con {
+    background-color: blue;
+    margin: 10px;
+}
+.false_con p {
+    color: white;
+}
+footer {
+    font-size: 15px;
+}
+h1 {
+    font-size: 40px !important;
+}

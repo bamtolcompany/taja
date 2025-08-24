@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>밤톨 타자연습</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://unpkg.com/98.css">
+    </head>
+    <body class="window">
+        <audio id="myAudio" src="bgm.mp3" loop></audio>
+        <h1>밤톨 타자연습</h1>
+        <h3>RETRO-EDITION</h3>
+        <div style="text-align: center;">
+            <div class="word">
+                <p id="word">시작을 눌러 타자연습을 시작하세요</p>
+            </div>
+        </div>
+        <input type="text" id="user">
+        <button onclick="ran()" class="submit" id="sub">시작</button><br>
+        <div class="false_con">
+            <p class="f_li">틀린 문제</p><br>
+            <p id="f"></p><br>
+            <p id="c"></p><br>
+        </div>
+        <button onclick="location.reload()"><u>다</u>시하기</button>
+        <button onclick="showRecent()"><u>최</u>근 기록</button>
+        <button onclick="bgm()"><u>배</u>경음악 재생</button>
+        <p>배경음악 정보</p>
+        <button onclick="show()"><u>모</u>두보기</button>
+        <p id="ccby"></p>
+        <footer>
+            <p>&copy; 2025 bamtol company.</p>
+        </footer>
+        <script src="main.js"></script>
+    </body>
+</html>
