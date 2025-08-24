@@ -374,32 +374,32 @@ function ran() {
     if (a < 1) {
         start = performance.now();
     }
-    if (user.value == word.innerHTML && a > 0 && a < 31) {
+    if (user.value == word.innerHTML && a > 0 && a < 16) {
         correct++;
-    } else if (user.value != word.innerHTML && a > 0 && a < 31) {
+    } else if (user.value != word.innerHTML && a > 0 && a < 16) {
         fals++;
         userAnswers.push(user.value);
         correctAnswers.push(word.innerHTML);
     }
-    if (a < 31) {
+    if (a < 16) {
         num.innerHTML = a + "/30";
     }
     else {
         num.innerHTML = "30/30";
     }
     a++;
-    if (a > 31) {
+    if (a > 16) {
         return;
     }
-    if (a > 30) {
+    if (a > 15) {
         const end = performance.now();
         const seconds = (end - start) / 1000;
-        var co_rate = Math.round((correct / 30) * 100);
+        var co_rate = Math.round((correct / 15) * 100);
         word.innerHTML = "끝났습니다. 맞은 횟수는 " + correct + "번, 틀린 횟수는 " + fals + "번 입니다. <br>정답율: " + co_rate + "%<br>" + "걸린시간: " + Math.round(seconds) + "초";
         f.innerHTML = "오답: " + userAnswers;
         c.innerHTML = "정답: " + correctAnswers;
         var re = word.innerText;
-        localStorage.setItem("최근 기록", re)
+        localStorage.setItem("최근기록", re)
         return;
     }
     var randomword = words[Math.floor(Math.random() * words.length)];
@@ -450,7 +450,7 @@ UCI 로고 UCI 코드 도움말<br>
 <button onclick="ccby.innerHTML = ''">접기</button>`;
 }
 function showRecent() {
-    var sr = localStorage.getItem("최근 기록")
+    var sr = localStorage.getItem("최근기록")
     if (sr == null) {
         alert("최근 기록이 없습니다.");
     }
