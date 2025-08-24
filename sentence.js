@@ -374,27 +374,27 @@ function ran() {
     if (a < 1) {
         start = performance.now();
     }
-    if (user.value == word.innerHTML && a > 0 && a < 16) {
+    if (user.value == word.innerHTML && a > 0 && a < 6) {
         correct++;
-    } else if (user.value != word.innerHTML && a > 0 && a < 16) {
+    } else if (user.value != word.innerHTML && a > 0 && a < 6) {
         fals++;
         userAnswers.push(user.value);
         correctAnswers.push(word.innerHTML);
     }
-    if (a < 16) {
-        num.innerHTML = a + "/15";
+    if (a < 6) {
+        num.innerHTML = a + "/5";
     }
     else {
-        num.innerHTML = "15/15";
+        num.innerHTML = "5/5";
     }
     a++;
-    if (a > 16) {
+    if (a > 6) {
         return;
     }
-    if (a > 15) {
+    if (a > 5) {
         const end = performance.now();
         const seconds = (end - start) / 1000;
-        var co_rate = Math.round((correct / 15) * 100);
+        var co_rate = Math.round((correct / 5) * 100);
         word.innerHTML = "끝났습니다. 맞은 횟수는 " + correct + "번, 틀린 횟수는 " + fals + "번 입니다. <br>정답율: " + co_rate + "%<br>" + "걸린시간: " + Math.round(seconds) + "초";
         f.innerHTML = "오답: " + userAnswers;
         c.innerHTML = "정답: " + correctAnswers;
