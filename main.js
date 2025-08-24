@@ -5,6 +5,7 @@ var f = document.getElementById("f");
 var c = document.getElementById("c");
 var ccby = document.getElementById("ccby");
 const audio = document.getElementById("myAudio");
+var num = document.getElementById("num");
 var words = ["가결", "가다", "가로등", "가루", "가물치", "가수", "가슴", "가해자", "강대국", "밤톨컴퍼니", "개선문", "개발", "계발", "강아지", "고양이", "결석", "경기장", "계곡"
          , "고등학교", "골프", "관측하다", "금강산", "기도", "김치", "끝말잇기", "내란", "비상계엄", "윤석열", "내년", "넓이", "누르스름하다", "느낌표", "다양성", "다투다", "당도", "대학교", 
          "동해안", "따듯하다", "망원경", "맨홀", "머리", "문자", "민주주의", "백두산", "발광", "본진", "불법", "빙하", "삼겹살", "선착장", "쇼핑", "스님", "신부", "신용 카드", 
@@ -22,22 +23,27 @@ function ran() {
     if (a < 1) {
         start = performance.now();
     }
-    if (user.value == word.innerHTML && a > 0 && a < 11) {
+    if (user.value == word.innerHTML && a > 0 && a < 31) {
         correct++;
-    } else if (user.value != word.innerHTML && a > 0 && a < 11) {
+    } else if (user.value != word.innerHTML && a > 0 && a < 31) {
         fals++;
         userAnswers.push(user.value);
         correctAnswers.push(word.innerHTML);
     }
-
+    if (a < 31) {
+        num.innerHTML = a + "/30";
+    }
+    else {
+        num.innerHTML = "30/30";
+    }
     a++;
-    if (a > 11) {
+    if (a > 31) {
         return;
     }
-    if (a > 10) {
+    if (a > 30) {
         const end = performance.now();
         const seconds = (end - start) / 1000;
-        var co_rate = correct * 10;
+        var co_rate = Math.round((correct / 30) * 100);
         word.innerHTML = "끝났습니다. 맞은 횟수는 " + correct + "번, 틀린 횟수는 " + fals + "번 입니다. <br>정답율: " + co_rate + "%<br>" + "걸린시간: " + Math.round(seconds) + "초";
         f.innerHTML = "오답: " + userAnswers;
         c.innerHTML = "정답: " + correctAnswers;
