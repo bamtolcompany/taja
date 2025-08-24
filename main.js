@@ -94,5 +94,10 @@ UCI 로고 UCI 코드 도움말<br>
 }
 function showRecent() {
     var sr = localStorage.getItem("최근 기록")
-    alert(sr)
+    if (sr == null) {
+        alert("최근 기록이 없습니다.");
+    }
+    else {
+        alert(sr);
+    }
 }
