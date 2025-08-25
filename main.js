@@ -6,12 +6,12 @@ var c = document.getElementById("c");
 var ccby = document.getElementById("ccby");
 const audio = document.getElementById("myAudio");
 var num = document.getElementById("num");
-var words = ["가결", "가다", "가로등", "가루", "가물치", "가수", "가슴", "가해자", "강대국", "밤톨컴퍼니", "개선문", "개발", "계발", "강아지", "고양이", "결석", "경기장", "계곡"
-         , "고등학교", "골프", "관측하다", "금강산", "기도", "김치", "끝말잇기", "내란", "비상계엄", "윤석열", "내년", "넓이", "누르스름하다", "느낌표", "다양성", "다투다", "당도", "대학교", 
+var words = ["가결", "가다", "가로등", "가루", "가물치", "가수", "가슴", "가해자", "강대국", "개선문", "개발", "계발", "강아지", "고양이", "결석", "경기장", "계곡"
+         , "고등학교", "골프", "관측하다", "금강산", "기도", "김치", "끝말잇기", "내란", "비상계엄", "내년", "넓이", "누르스름하다", "느낌표", "다양성", "다투다", "당도", "대학교", 
          "동해안", "따듯하다", "망원경", "맨홀", "머리", "문자", "민주주의", "백두산", "발광", "본진", "불법", "빙하", "삼겹살", "선착장", "쇼핑", "스님", "신부", "신용 카드", 
          "쓸데없다", "안성맞춤", "안전", "앵무새", "양", "얼굴", "엔진", "영어", "외할머니", "유적", "은박지", "인공지능", "인왕산", "자본주의", "접전", "족제비", "주최", "지중해성 기후", "찌개", "찻길", 
          "채식주의자", "첨성대", "체육", "치과", "타인", "태양", "팔월", "팔만대장경", "폐허", "풋과일", "폭탄", "하마", "한라산", "한마음", "핵가족", "대가족", "허영심", "현대인", 
-         "현금", "홍익인간", "확률", "홍대입구", "화성", "후금", "훑어보다", "흉흉하다", "힘", "이재명", "대통령"];
+         "현금", "홍익인간", "확률", "홍대입구", "화성", "후금", "훑어보다", "흉흉하다", "힘", "대통령"];
 var a = 0;
 var correct = 0;
 var fals = 0;
@@ -44,7 +44,11 @@ function ran() {
         const end = performance.now();
         const seconds = (end - start) / 1000;
         var co_rate = Math.round((correct / 30) * 100);
-        word.innerHTML = "끝났습니다. 맞은 횟수는 " + correct + "번, 틀린 횟수는 " + fals + "번 입니다. <br>정답율: " + co_rate + "%<br>" + "걸린시간: " + Math.round(seconds) + "초";
+        const maxTime = 300;
+        let timeScore = 100 - (100 / maxTime) * seconds;
+        timeScore = Math.round(timeScore);
+        var score = timeScore * co_rate / 100;
+        word.innerHTML = "끝났습니다. 맞은 횟수는 " + correct + "번, 틀린 횟수는 " + fals + "번 입니다. <br>정답율: " + co_rate + "%<br>" + "걸린시간: " + Math.round(seconds) + "초<br>" + "점수: " + score;
         f.innerHTML = "오답: " + userAnswers;
         c.innerHTML = "정답: " + correctAnswers;
         var re = word.innerText;
