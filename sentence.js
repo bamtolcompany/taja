@@ -395,7 +395,11 @@ function ran() {
         const end = performance.now();
         const seconds = (end - start) / 1000;
         var co_rate = Math.round((correct / 5) * 100);
-        word.innerHTML = "끝났습니다. 맞은 횟수는 " + correct + "번, 틀린 횟수는 " + fals + "번 입니다. <br>정답율: " + co_rate + "%<br>" + "걸린시간: " + Math.round(seconds) + "초";
+        const maxTime = 500;
+        let timeScore = 100 - (100 / maxTime) * seconds;
+        timeScore = Math.round(timeScore);
+        var score = timeScore * co_rate / 100;
+        word.innerHTML = "끝났습니다. 맞은 횟수는 " + correct + "번, 틀린 횟수는 " + fals + "번 입니다. <br>정답율: " + co_rate + "%<br>" + "걸린시간: " + Math.round(seconds) + "초<br>" + "점수: " + Math.round(score) + "점";
         f.innerHTML = "오답: " + userAnswers;
         c.innerHTML = "정답: " + correctAnswers;
         var re = word.innerText;

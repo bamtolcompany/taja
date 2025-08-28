@@ -46,13 +46,26 @@ function ran() {
         var co_rate = Math.round((correct / 30) * 100);
         const maxTime = 300;
         let timeScore = 100 - (100 / maxTime) * seconds;
+        if (seconds <= 20) {
+        timeScore = 100;
+        }
         timeScore = Math.round(timeScore);
         var score = timeScore * co_rate / 100;
-        word.innerHTML = "끝났습니다. 맞은 횟수는 " + correct + "번, 틀린 횟수는 " + fals + "번 입니다. <br>정답율: " + co_rate + "%<br>" + "걸린시간: " + Math.round(seconds) + "초<br>" + "점수: " + score;
+        word.innerHTML = "끝났습니다. 맞은 횟수는 " + correct + "번, 틀린 횟수는 " + fals + "번 입니다. <br>정답율: " + co_rate + "%<br>" + "걸린시간: " + Math.round(seconds) + "초<br>" + "점수: " + Math.round(score) + "점";
         f.innerHTML = "오답: " + userAnswers;
         c.innerHTML = "정답: " + correctAnswers;
         var re = word.innerText;
         localStorage.setItem("최근 기록", re)
+        if (co_rate == 100) {
+            alert("축하합니다! 금메달~!");
+        } 
+        else if (co_rate > 90) {
+            alert("은메달");
+        } 
+        else if (co_rate > 80) {
+            alert("동메달");
+        }
+
         return;
     }
     var randomword = words[Math.floor(Math.random() * words.length)];
