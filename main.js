@@ -6,6 +6,7 @@ var c = document.getElementById("c");
 var ccby = document.getElementById("ccby");
 const audio = document.getElementById("myAudio");
 var num = document.getElementById("num");
+var progressBar = document.getElementById("progress-bar");
 var words = ["가결", "가다", "가로등", "가루", "가물치", "가수", "가슴", "가해자", "강대국", "개선문", "개발", "계발", "강아지", "고양이", "결석", "경기장", "계곡"
          , "고등학교", "골프", "관측하다", "금강산", "기도", "김치", "끝말잇기", "내란", "비상계엄", "내년", "넓이", "누르스름하다", "느낌표", "다양성", "다투다", "당도", "대학교", 
          "동해안", "따듯하다", "망원경", "맨홀", "머리", "문자", "민주주의", "백두산", "발광", "본진", "불법", "빙하", "삼겹살", "선착장", "쇼핑", "스님", "신부", "신용 카드", 
@@ -32,6 +33,8 @@ function ran() {
     }
     if (a < 31) {
         num.innerHTML = a + "/30";
+        var progress = a / 30 * 100 * 5;
+        progressBar.innerHTML = "<div class='prbar' style='width: " + progress + "px;'></div>"
     }
     else {
         num.innerHTML = "30/30";

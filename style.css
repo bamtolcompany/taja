@@ -34,3 +34,13 @@ footer {
 h1 {
     font-size: 40px !important;
 }
+#progress-bar {
+    width: 500px;
+    background-color: white;
+    height: 30px;
+    margin: 10px;
+}
+.prbar {
+    height: 30px;
+    background-color: green;
+}
