@@ -44,3 +44,10 @@ h1 {
     height: 30px;
     background-color: green;
 }
+.fprbar {
+    height: 30px;
+    background-color: red;
+}
+.divs {
+    display: flex;
+}

@@ -33,8 +33,9 @@ function ran() {
     }
     if (a < 31) {
         num.innerHTML = a + "/30";
-        var progress = a / 30 * 100 * 5;
-        progressBar.innerHTML = "<div class='prbar' style='width: " + progress + "px;'></div>"
+        var progress = correct / 30 * 100 * 5;
+        var fprogress = fals / 30 * 100 * 5;
+        progressBar.innerHTML = "<div class='divs'><div class='prbar' style='width: " + progress + "px;'></div><div class='fprbar' style='width: " + fprogress + "px;'></div></div>";
     }
     else {
         num.innerHTML = "30/30";
