@@ -2,9 +2,10 @@
 let currentUser = null;
 
 // 로그인 후 토큰/사용자 이름 저장
-function setLogin(user) {
+function setLogin(user, token) {
     currentUser = user; // 예: { username: "nickname" }
     localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("token", token); // 토큰도 저장
     updateUI();
 }
 
@@ -12,6 +13,7 @@ function setLogin(user) {
 function logout() {
     currentUser = null;
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
     updateUI();
 }
 
@@ -38,20 +40,60 @@ function updateUI() {
     }
 }
 
-// 기록 저장 함수 수정 (login 연동)
+// 기록 저장 함수 (JWT 연동, 계정 기준 저장)
 function saveRecord(record) {
     if (!currentUser) {
         alert("로그인 후 이용해주세요.");
         return;
     }
 
+    const token = localStorage.getItem("token");
+    if (!token) {
+        alert("토큰이 없습니다. 다시 로그인 해주세요.");
+        return;
+    }
+
     fetch("https://backend-bzep.onrender.com/api/save-record", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: currentUser.username, record })
-    }).then(res => res.json())
-        .then(data => console.log("Record saved:", data))
-        .catch(err => console.error(err));
+        headers: { 
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token
+        },
+        body: JSON.stringify({ record })
+    })
+    .then(res => res.json())
+    .then(data => console.log("Record saved:", data))
+    .catch(err => console.error(err));
+}
+
+// 최근 기록 불러오기 (계정 기준)
+function showRecent() {
+    if (!currentUser) {
+        alert("로그인 후 이용해주세요.");
+        return;
+    }
+
+    const token = localStorage.getItem("token");
+    if (!token) {
+        alert("토큰이 없습니다. 다시 로그인 해주세요.");
+        return;
+    }
+
+    fetch("https://backend-bzep.onrender.com/api/recent-record", {
+        method: "GET",
+        headers: { 
+            "Authorization": "Bearer " + token
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.record) {
+            alert("최근 기록:\n" + data.record);
+        } else {
+            alert("최근 기록이 없습니다.");
+        }
+    })
+    .catch(err => console.error(err));
 }
 
 // 페이지 로드 시 로그인 상태 확인
@@ -117,8 +159,11 @@ function ran() {
         word.innerHTML = "끝났습니다. 맞은 횟수는 " + correct + "번, 틀린 횟수는 " + fals + "번 입니다. <br>정답율: " + co_rate + "%<br>" + "걸린시간: " + Math.round(seconds) + "초<br>" + "점수: " + Math.round(score) + "점";
         f.innerHTML = "오답: " + userAnswers;
         c.innerHTML = "정답: " + correctAnswers;
+
+        // 계정 기준으로 기록 저장
         var re = word.innerText;
-        localStorage.setItem("최근 기록", re)
+        saveRecord(re);
+
         if (co_rate == 100) {
             alert("축하합니다! 금메달~!");
         }
@@ -177,13 +222,4 @@ UCI 로고 UCI 코드 도움말<br>
 원문파일명<br>
 국악 배경음악 #142.mp3<br>
 <button onclick="ccby.innerHTML = ''">접기</button>`;
-}
-function showRecent() {
-    var sr = localStorage.getItem("최근 기록")
-    if (sr == null) {
-        alert("최근 기록이 없습니다.");
-    }
-    else {
-        alert(sr);
-    }
 }
